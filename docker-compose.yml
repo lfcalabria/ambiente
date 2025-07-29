@@ -1,0 +1,40 @@
+
+services:
+
+  jupyter:
+    image: tensorflow/tensorflow:2.13.0-gpu-jupyter
+    container_name: jupyter_tensorflow
+    restart: always
+    ports:
+      - "8889:8888"
+    volumes:
+      - ./jupyter/notebooks:/tf/notebooks
+    environment:
+      - JUPYTER_ENABLE_LAB=no
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    runtime: nvidia
+    working_dir: /tf/notebooks
+    command: >
+      bash -c "
+        pip install --upgrade pip &&
+        pip install -r /tf/notebooks/requirements.txt &&
+        jupyter notebook --NotebookApp.token='' --NotebookApp.password='' --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+      "
+      
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_server1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vendas
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+ 
