@@ -1,0 +1,54 @@
+# Gerenciamento e manipulação de dados
+pandas
+numpy
+polars
+pyarrow
+sqlalchemy
+pymysql   # suporte MySQL
+pymongo   # suporte MongoDB
+openpyxl  # suporte Excel
+xlrd      # leitura de Excel antigo
+
+# Visualização
+matplotlib
+seaborn
+plotly
+
+# Machine Learning e Modelagem
+#scikit-learn
+xgboost
+lightgbm
+catboost
+
+# Séries Temporais
+statsmodels
+pmdarima
+prophet
+neuralprophet
+tsfresh
+darts
+
+# Estatística e Probabilidade
+scipy
+pingouin
+linearmodels
+
+# Notebooks e exploração
+jupyterlab
+ipykernel
+ipywidgets
+jupyter
+notebook
+
+# Utilidades extras
+tqdm        # barra de progresso
+joblib      # paralelismo e cache
+tensorflow #==2.13.0
+typing-extensions #==4.5.0
+lorem
+
+py4j
+pyarrow
+yfinance
+arch
+

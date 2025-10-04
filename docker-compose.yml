@@ -1,7 +1,8 @@
+
 services:
 
   jupyter:
-    image: tensorflow/tensorflow:2.13.0-gpu-jupyter
+    image: tensorflow/tensorflow:2.13.0-jupyter
     container_name: jupyter_tensorflow
     restart: always
     ports:
@@ -10,15 +11,16 @@ services:
       - ./jupyter/notebooks:/tf/notebooks
     environment:
       - JUPYTER_ENABLE_LAB=no
-    runtime: nvidia
     working_dir: /tf/notebooks
-    command: >
-      bash -c "
-        pip install --upgrade pip &&
-        pip install -r /tf/notebooks/requirements.txt &&
+    command:
+      - bash
+      - -c
+      - |
+        pip install --upgrade pip && \
+        pip install -r /tf/notebooks/requirements.txt && \
         jupyter notebook --NotebookApp.token='' --NotebookApp.password='' --ip=0.0.0.0 --port=8888 --no-browser --allow-root
-      "
 
+      
   mysql:
     image: mysql:8.0
     container_name: mysql_server1
@@ -31,7 +33,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
 
-  mongodb:
+   mongodb:
     image: mongo:6
     container_name: mongodb_server1
     restart: always
@@ -39,4 +41,3 @@ services:
       - "27018:27017"
     volumes:
       - ./mongo:/data/db
-
